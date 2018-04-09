@@ -16,7 +16,7 @@ encapsulation: ViewEncapsulation.None
 export class AppComponent implements OnInit {
 
   title = 'kendo grid eval';
-  public gridData: any[] = this.createRandomData(30);
+  public gridData: any[] = this.createRandomData(50);
   public gridView: GridDataResult;
 
   public sort: SortDescriptor[] = [{
