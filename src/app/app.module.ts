@@ -5,11 +5,15 @@ import { GridModule } from '@progress/kendo-angular-grid';
 
 
 import { AppComponent } from './app.component';
+import { PageSameHeightComponent } from './page-same-height/page-same-height.component';
+import { MatchHeightDirective } from './match-height.directive';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageSameHeightComponent,
+    MatchHeightDirective
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,14 @@
+<main class="container">
+  <h2>Malaysia States</h2>
+
+  <div class="row" appMatchHeight="card">
+      <div class="col-sm-4" *ngFor="let state of list">
+          <div class="card card-block">
+              <h4 class="card-title">{{ state.title }}</h4>
+              <p class="card-text">
+                  {{ state.content }}
+              </p>
+          </div>
+      </div>
+  </div>
+</main>
