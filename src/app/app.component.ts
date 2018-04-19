@@ -1,8 +1,9 @@
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { products } from './products';
 
-import { GridModule, GridDataResult, DataStateChangeEvent, PageChangeEvent } from '@progress/kendo-angular-grid';
+import { GridModule, GridDataResult, DataStateChangeEvent, PageChangeEvent, GridComponent } from '@progress/kendo-angular-grid';
 import { SortDescriptor, orderBy, process, State } from '@progress/kendo-data-query';
+
 
 @Component({
   selector: 'app-root',
@@ -13,11 +14,13 @@ import { SortDescriptor, orderBy, process, State } from '@progress/kendo-data-qu
 ],
 encapsulation: ViewEncapsulation.None
 })
-export class AppComponent implements OnInit {
-
+export class AppComponent implements OnInit, AfterViewInit {
+  
   title = 'kendo grid eval';
-  public gridData: any[] = this.createRandomData(50);
+  public gridData: any[] = this.createRandomData(100);
   public gridView: GridDataResult;
+  public pageSize = 10;
+  public skip = 0;
 
   public sort: SortDescriptor[] = [{
     field: 'ProductID',
@@ -32,10 +35,25 @@ export class AppComponent implements OnInit {
     }
   };
 
+  @ViewChild('grid') private grid: GridComponent;
+  
   constructor() {}
 
   ngOnInit(): void {
     this.loadData();
+  }
+
+  ngAfterViewInit(): void {
+    this.grid.pageChange
+            .debounceTime(1000)
+            .subscribe((e) => this.pageChange(e));
+  }
+
+  public pageChange(event: PageChangeEvent): void {
+      this.skip = event.skip;
+
+      console.log(`Returning ${this.pageSize} items of data, offset by ${this.skip}`);
+      this.loadData();
   }
 
   public sortChange(sort: SortDescriptor[]): void {
@@ -49,9 +67,11 @@ export class AppComponent implements OnInit {
   }
 
   private loadData(): void {
-    var data = orderBy(this.gridData, this.sort);
+  
+    var slicedData = this.gridData.slice(this.skip, this.skip + this.pageSize);
+    var data = orderBy(slicedData, this.sort);
 
-    console.log('data length ' + data.length + ' items');
+    //console.log('data length ' + data.length + ' items');
 
     // data: this.data.slice(this.skip, this.skip + this.pageSize),
     this.gridView = {

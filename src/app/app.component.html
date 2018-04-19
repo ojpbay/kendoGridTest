@@ -4,17 +4,23 @@
 </div>
 
 <div>
-    <kendo-grid 
-      [data]="gridView" 
-      [height]="410"
-      [sortable]="true"
-      [sort]="sort"
-      [filterable]="true"
-      [resizable]="true"
-      [filter]="state.filter"
-      (sortChange)="sortChange($event)"
-      (dataStateChange)="dataStateChange($event)"
-      >
+    <kendo-grid #grid
+        [data]="gridView"
+        [skip]="skip"
+        [pageSize]="pageSize"
+        [scrollable]="'virtual'"
+        [rowHeight]="35"
+        [height]="450"
+        (pageChange)="pageChange($event)"
+        [navigable]="true"
+        [sortable]="true"
+        [sort]="sort"
+        [filterable]="true"
+        [resizable]="true"
+        [filter]="state.filter"
+        (sortChange)="sortChange($event)"
+        (dataStateChange)="dataStateChange($event)"
+        >
 
         <kendo-grid-column field="team" title="Team">
             <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
