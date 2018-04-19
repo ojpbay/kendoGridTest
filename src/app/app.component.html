@@ -9,7 +9,7 @@
       [height]="410"
       [sortable]="true"
       [sort]="sort"
-      filterable="menu"
+      [filterable]="true"
       [resizable]="true"
       [filter]="state.filter"
       (sortChange)="sortChange($event)"
@@ -17,18 +17,59 @@
       >
 
         <kendo-grid-column field="team" title="Team">
+            <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                <kendo-grid-string-filter-cell
+                    [showOperators]="false"
+                    [column]="column"
+                    [filter]="filter">
+                </kendo-grid-string-filter-cell>
+            </ng-template>
         </kendo-grid-column>
+
         <kendo-grid-column field="programme" title="Programme">
+            <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                <kendo-grid-string-filter-cell
+                    [showOperators]="false"
+                    [column]="column"
+                    [filter]="filter">
+                </kendo-grid-string-filter-cell>
+            </ng-template>
         </kendo-grid-column>
+
         <kendo-grid-column field="clientName" title="Client Name">
+            <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                <kendo-grid-string-filter-cell
+                    [showOperators]="false"
+                    [column]="column"
+                    [filter]="filter">
+                </kendo-grid-string-filter-cell>
+            </ng-template>
         </kendo-grid-column>
+
         <kendo-grid-column field="reference" title="Reference">
+            <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                <kendo-grid-string-filter-cell
+                    [showOperators]="false"
+                    [column]="column"
+                    [filter]="filter">
+                </kendo-grid-string-filter-cell>
+            </ng-template>
         </kendo-grid-column>
+
         <kendo-grid-column field="dateCreated" title="Created" format="{0:dd/MM/yyyy}" filter="date">
+            <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                <kendo-grid-string-filter-cell
+                    [showOperators]="false"
+                    [column]="column"
+                    [filter]="filter">
+                </kendo-grid-string-filter-cell>
+            </ng-template>
         </kendo-grid-column>
     </kendo-grid>
 </div>
 
+<!--
 <div>
     <app-page-same-height></app-page-same-height>
 </div>
+-->
