@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GridModule } from '@progress/kendo-angular-grid';
+import { GridModule, ExcelModule } from '@progress/kendo-angular-grid';
 
 
 import { AppComponent } from './app.component';
@@ -18,7 +18,8 @@ import { MatchHeightDirective } from './match-height.directive';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    GridModule
+    GridModule,
+    ExcelModule
   ],
   providers: [],
   bootstrap: [AppComponent]

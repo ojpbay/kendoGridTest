@@ -22,6 +22,10 @@
         (dataStateChange)="dataStateChange($event)"
         >
 
+        <ng-template kendoGridToolbarTemplate>
+            <button type="button" kendoGridExcelCommand icon="file-excel">Export to Excel</button>
+        </ng-template>
+
         <kendo-grid-column field="team" title="Team">
             <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
                 <kendo-grid-string-filter-cell
@@ -41,17 +45,7 @@
                 </kendo-grid-string-filter-cell>
             </ng-template>
         </kendo-grid-column>
-
-        <kendo-grid-column field="clientName" title="Client Name">
-            <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
-                <kendo-grid-string-filter-cell
-                    [showOperators]="false"
-                    [column]="column"
-                    [filter]="filter">
-                </kendo-grid-string-filter-cell>
-            </ng-template>
-        </kendo-grid-column>
-
+      
         <kendo-grid-column field="reference" title="Reference">
             <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
                 <kendo-grid-string-filter-cell
@@ -71,6 +65,8 @@
                 </kendo-grid-string-filter-cell>
             </ng-template>
         </kendo-grid-column>
+
+        <kendo-grid-excel fileName="Test.xlsx"></kendo-grid-excel>
     </kendo-grid>
 </div>
 

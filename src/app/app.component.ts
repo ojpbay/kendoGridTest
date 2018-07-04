@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { products } from './products';
+import "rxjs/add/operator/debounceTime";
 
 import { GridModule, GridDataResult, DataStateChangeEvent, PageChangeEvent, GridComponent } from '@progress/kendo-angular-grid';
 import { SortDescriptor, orderBy, process, State } from '@progress/kendo-data-query';
@@ -83,14 +84,12 @@ export class AppComponent implements OnInit, AfterViewInit {
   private createRandomData(count: number): any[] {
     const teamNames = ['Marine', 'Financial Solutions'],
         programmeNames = ['Thoughtsphere Shipping - 2018', 'Evergreen Ltd', 'BW International - 2018', 'Demo Associates - Delta'],
-        clientNames = ['Thoughtsphere Shipping', 'Evergreen Ltd', 'Blue Water', 'D.A. Ltd'],
         references = ['REF', 'ACC-', 'RN', 'MRU'];
 
     return Array(count).fill({}).map((_, idx) => ({
         key: 'ba8963ea-bb7e-46ab-b9d7-e0ae9a2d6b69',
         team: teamNames[Math.floor(Math.random() * teamNames.length)],
         programme: programmeNames[Math.floor(Math.random() * programmeNames.length)],
-        clientName: clientNames[Math.floor(Math.random() * clientNames.length)],
         reference: references[Math.floor(Math.random() * references.length)] + Math.floor((Math.random() * 999999) + 100000).toString(),
         dateCreated: new Date(new Date(2018, 1, 1).getTime() + Math.random() * (new Date(2018, 6, 6).getTime() - new Date(2018, 1, 1).getTime()))
     })
